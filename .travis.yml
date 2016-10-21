@@ -1,3 +1,5 @@
+sudo: required
+
 language: go
 
 install: go get
@@ -7,5 +9,5 @@ script:
   - ls
   - ./go-smtp-server
   # - diff -u <(echo -n) <(gofmt -d -s .)
-  - go test -v ./..
+  - go test -v github.com/nguoianphu/go-smtp-server
   
