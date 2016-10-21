@@ -3,8 +3,9 @@ language: go
 install: go get
 
 script:
-  - diff -u <(echo -n) <(gofmt -d -s .)
-  - go test -v
-  - go build
+  - go build -x go-smtp-server.go
   - ls
+  - ./go-smtp-server
+  # - diff -u <(echo -n) <(gofmt -d -s .)
+  - go test -v ./..
   
