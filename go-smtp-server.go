@@ -1,6 +1,6 @@
 // +build ignore
 
-package go-smtp-server
+package main
 
 import (
     "errors"
