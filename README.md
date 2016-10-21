@@ -1,7 +1,7 @@
 # go-smtp-server
 
-[![GoDoc](https://godoc.org/github.com/emersion/go-smtp-server?status.svg)](https://godoc.org/github.com/emersion/go-smtp-server)
-[![Build Status](https://travis-ci.org/emersion/go-smtp-server.svg?branch=master)](https://travis-ci.org/emersion/go-smtp-server)
+[![GoDoc](https://godoc.org/github.com/nguoianphu/go-smtp-server?status.svg)](https://godoc.org/github.com/nguoianphu/go-smtp-server)
+[![Build Status](https://travis-ci.org/nguoianphu/go-smtp-server.svg?branch=master)](https://travis-ci.org/nguoianphu/go-smtp-server)
 
 An ESMTP server library written in Go.
 
@@ -11,7 +11,18 @@ An ESMTP server library written in Go.
 * Support for SMTP AUTH ([RFC 4954](https://tools.ietf.org/html/rfc4954)) and PIPELINING ([RFC 2920](https://tools.ietf.org/html/rfc2920))
 * UTF-8 support for subject and message
 
-## Usage
+
+- username: ```username```
+- password: ```password```
+
+## Build and compile
+
+	go get github.com/nguoianphu/go-smtp-server
+	cd $GOPATH/src/github.com/nguoianphu/go-smtp-server
+	go build github.com/nguoianphu/go-smtp-server/go-smtp-server.go
+	./go-smtp-server
+
+## Usage in your golang code
 
 ```go
 // +build ignore
@@ -23,7 +34,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	smtpserver "github.com/emersion/go-smtp-server"
+	smtpserver "github.com/nguoianphu/go-smtp-server"
 )
 
 type Backend struct{}
@@ -73,7 +84,7 @@ func main() {
 
 You can use the server manually with `telnet`:
 ```
-$ telnet localhost 1025
+$ telnet localhost 25
 EHLO localhost
 AUTH PLAIN
 AHVzZXJuYW1lAHBhc3N3b3Jk
