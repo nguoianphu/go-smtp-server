@@ -10,4 +10,4 @@ script:
   - env GOOS=windows GOARCH=amd64 go get -v github.com/nguoianphu/go-smtp-server/smtp
   - ls -Rla $GOPATH/bin
   - go test -v github.com/nguoianphu/go-smtp-server
-  - ./smtp
+  - ./GOPATH/bin/smtp
