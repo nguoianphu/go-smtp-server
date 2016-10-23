@@ -3,11 +3,10 @@ sudo:
 
 language:
  - go
- - tip
 
 script:
   - go get -v github.com/nguoianphu/go-smtp-server/smtp
   - env GOOS=windows GOARCH=amd64 go get -v github.com/nguoianphu/go-smtp-server/smtp
   - ls -Rla $GOPATH/bin
   - go test -v github.com/nguoianphu/go-smtp-server
-  - ./GOPATH/bin/smtp
+  - ./$GOPATH/bin/smtp
