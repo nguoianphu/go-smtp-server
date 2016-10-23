@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	smtpserver "github.com/emersion/go-smtp-server"
+	smtpserver "github.com/nguoianphu/go-smtp-server"
 )
 
 type backend struct {
