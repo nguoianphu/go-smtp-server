@@ -1,13 +1,14 @@
-sudo: required
+sudo:
+ - required
 
-language: go
-
-install: go get
+language:
+ - go
+ - tip
 
 script:
-  - go build -x go-smtp-server.go
-  - ls
-  - ./go-smtp-server
-  # - diff -u <(echo -n) <(gofmt -d -s .)
+  - go get -v github.com/nguoianphu/go-smtp-server/smtp
+  - env GOOS=windows GOARCH=amd64 go get -v github.com/nguoianphu/go-smtp-server/smtp
+  - ls -la
   - go test -v github.com/nguoianphu/go-smtp-server
+  - ./go-smtp-server
   
