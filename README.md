@@ -17,7 +17,7 @@ An ESMTP server library written in Go.
 
 ## Build and compile
 
-	go get github.com/nguoianphu/go-smtp-server
+	go get github.com/nguoianphu/go-smtp-server/smtp
 	cd $GOPATH/src/github.com/nguoianphu/go-smtp-server
 	go build github.com/nguoianphu/go-smtp-server/go-smtp-server.go
 	./go-smtp-server
