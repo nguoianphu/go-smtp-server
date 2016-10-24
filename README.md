@@ -17,15 +17,36 @@ An ESMTP server library written in Go.
 
 ## Build and compile
 
-	go get github.com/nguoianphu/go-smtp-server
-	cd $GOPATH/src/github.com/nguoianphu/go-smtp-server
-	go build github.com/nguoianphu/go-smtp-server/go-smtp-server.go
-	./go-smtp-server
+### Linux
 
+	go get -v github.com/nguoianphu/go-smtp-server/smtp
+	./$GOPATH/bin/smtp
+	
+	
+	# Cross-compile for Window 64-bit
+	# https://golang.org/doc/install/source#environment
+	
+	export GOOS=windows
+	export GOARCH=amd64
+	go get -v github.com/nguoianphu/go-smtp-server/smtp
+	$GOPATH/bin/windows_amd64/smtp.exe
+
+### Windows
+	
+	go get -v github.com/nguoianphu/go-smtp-server/smtp
+	%GOPATH%/bin/smtp.exe
+	
+	# Cross-compile for Linux 64-bit
+	# https://golang.org/doc/install/source#environment
+	
+	set GOOS=linux
+	set GOARCH=amd64
+	go get -v github.com/nguoianphu/go-smtp-server/smtp
+	%GOPATH%/bin/linux_amd64/smtp
+	
 ## Usage in your golang code
 
 ```go
-// +build ignore
 
 package main
 
