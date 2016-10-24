@@ -22,7 +22,9 @@ before_install:
   - sudo pip install docutils  
   
 install:
-  - make govendor
+  - go get -u github.com/kardianos/govendor
+  - go install github.com/kardianos/govendor
+  - govendor sync github.com/nguoianphu/go-smtp-server
   
 script:
   - go get -v -race github.com/nguoianphu/go-smtp-server/smtp
