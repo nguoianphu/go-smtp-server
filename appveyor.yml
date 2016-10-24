@@ -27,7 +27,7 @@ install:
   - mkdir c:\gopath
   - go get -v github.com/nguoianphu/go-smtp-server/smtp
   - go test -v -race github.com/nguoianphu/go-smtp-server
-  - smtp
+  # - smtp
 
 # build_script:
   # - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/atom/ci/943a16cd32926bdfcca703f16ec6a958a2db38a5/build-package.ps1'))
