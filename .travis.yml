@@ -21,10 +21,10 @@ before_install:
   - sudo gem install asciidoctor | gem install asciidoctor 
   - sudo pip install docutils  
   
-install:
-  - go get -u github.com/kardianos/govendor
-  - go install github.com/kardianos/govendor
-  - govendor sync github.com/nguoianphu/go-smtp-server
+# install:
+  # - go get -u github.com/kardianos/govendor
+  # - go install github.com/kardianos/govendor
+  # - govendor sync github.com/nguoianphu/go-smtp-server
   
 script:
   - go get -v -race github.com/nguoianphu/go-smtp-server/smtp
