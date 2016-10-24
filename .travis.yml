@@ -1,12 +1,31 @@
-sudo:
- - required
+language: go
 
-language:
- - go
+sudo: required
 
+go:
+  - 1.6.3
+  - 1.7.3
+  - tip
+  
+os:
+  - linux
+  - osx
+  
+matrix:
+  allow_failures:
+    - go: tip
+  fast_finish: true
+
+before_install:
+  # gem install must be run with sudo on OSX 
+  - sudo gem install asciidoctor | gem install asciidoctor 
+  - sudo pip install docutils  
+  
+install:
+  - make govendor
+  
 script:
-  - go get -v github.com/nguoianphu/go-smtp-server/smtp
-  - env GOOS=windows GOARCH=amd64 go get -v github.com/nguoianphu/go-smtp-server/smtp
+  - go get -v -race github.com/nguoianphu/go-smtp-server/smtp
+  - env GOOS=windows GOARCH=amd64 go get -v -race github.com/nguoianphu/go-smtp-server/smtp
   - ls -Rla $GOPATH/bin
-  - go test -v github.com/nguoianphu/go-smtp-server
-  # - $GOPATH/bin/smtp
+  - go test -v -race github.com/nguoianphu/go-smtp-server
