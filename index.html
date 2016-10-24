@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Go-smtp-server by nguoianphu</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Go-smtp-server</h1>
+          <h2>An ESMTP server library written in Go</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/nguoianphu/go-smtp-server/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/nguoianphu/go-smtp-server/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/nguoianphu/go-smtp-server" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="go-smtp-server" class="anchor" href="#go-smtp-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>go-smtp-server</h1>
+
+<p><a href="https://godoc.org/github.com/nguoianphu/go-smtp-server"><img src="https://godoc.org/github.com/nguoianphu/go-smtp-server?status.svg" alt="GoDoc"></a>
+<a href="https://travis-ci.org/nguoianphu/go-smtp-server"><img src="https://travis-ci.org/nguoianphu/go-smtp-server.svg?branch=master&amp;label=Linux+and+OS+X+build" alt="Linux and OS X Build Status" title="Linux and OS X Build Status"></a>
+<a href="https://ci.appveyor.com/project/nguoianphu/go-smtp-server"><img src="https://ci.appveyor.com/api/projects/status/ovn8ncrgcf9lpsan?svg=true&amp;label=Windows+build" alt="Windows Build Status" title="Windows Build Status"></a></p>
+
+<p>An ESMTP server library written in Go.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>ESMTP server implementing <a href="https://tools.ietf.org/html/rfc5321">RFC 5321</a>
+</li>
+<li>Support for SMTP AUTH (<a href="https://tools.ietf.org/html/rfc4954">RFC 4954</a>) and PIPELINING (<a href="https://tools.ietf.org/html/rfc2920">RFC 2920</a>)</li>
+<li><p>UTF-8 support for subject and message</p></li>
+<li><p>username: <code>username</code></p></li>
+<li>password: <code>password</code>
+</li>
+</ul>
+
+<h2>
+<a id="build-and-compile" class="anchor" href="#build-and-compile" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build and compile</h2>
+
+<h3>
+<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Linux</h3>
+
+<pre><code>go get -v github.com/nguoianphu/go-smtp-server/smtp
+./$GOPATH/bin/smtp
+
+
+# Cross-compile for Window 64-bit
+# https://golang.org/doc/install/source#environment
+
+export GOOS=windows
+export GOARCH=amd64
+go get -v github.com/nguoianphu/go-smtp-server/smtp
+$GOPATH/bin/windows_amd64/smtp.exe
+</code></pre>
+
+<h3>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows</h3>
+
+<pre><code>go get -v github.com/nguoianphu/go-smtp-server/smtp
+%GOPATH%/bin/smtp.exe
+
+# Cross-compile for Linux 64-bit
+# https://golang.org/doc/install/source#environment
+
+set GOOS=linux
+set GOARCH=amd64
+go get -v github.com/nguoianphu/go-smtp-server/smtp
+%GOPATH%/bin/linux_amd64/smtp
+</code></pre>
+
+<h2>
+<a id="usage-in-your-golang-code" class="anchor" href="#usage-in-your-golang-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage in your golang code</h2>
+
+<div class="highlight highlight-source-go"><pre>
+<span class="pl-k">package</span> main
+
+<span class="pl-k">import</span> (
+    <span class="pl-s"><span class="pl-pds">"</span>errors<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>io/ioutil<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>log<span class="pl-pds">"</span></span>
+
+    smtpserver <span class="pl-s"><span class="pl-pds">"</span>github.com/nguoianphu/go-smtp-server<span class="pl-pds">"</span></span>
+)
+
+<span class="pl-k">type</span> <span class="pl-v">Backend</span> <span class="pl-k">struct</span>{}
+
+<span class="pl-k">func</span> <span class="pl-en">(<span class="pl-v">bkd</span> *<span class="pl-v">Backend</span>) <span class="pl-en">Login</span></span>(<span class="pl-v">username</span>, <span class="pl-v">password</span> <span class="pl-v">string</span>) (<span class="pl-v">smtpserver</span>.<span class="pl-v">User</span>, <span class="pl-v">error</span>) {
+    <span class="pl-k">if</span> username != <span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span> || password != <span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span> {
+        <span class="pl-k">return</span> <span class="pl-c1">nil</span>, errors.<span class="pl-c1">New</span>(<span class="pl-s"><span class="pl-pds">"</span>Invalid username or password<span class="pl-pds">"</span></span>)
+    }
+    <span class="pl-k">return</span> &amp;User{}, <span class="pl-c1">nil</span>
+}
+
+<span class="pl-k">type</span> <span class="pl-v">User</span> <span class="pl-k">struct</span>{}
+
+<span class="pl-k">func</span> <span class="pl-en">(<span class="pl-v">u</span> *<span class="pl-v">User</span>) <span class="pl-en">Send</span></span>(<span class="pl-v">msg</span> *<span class="pl-v">smtpserver</span>.<span class="pl-v">Message</span>) <span class="pl-v">error</span> {
+    log.<span class="pl-c1">Println</span>(<span class="pl-s"><span class="pl-pds">"</span>Sending message:<span class="pl-pds">"</span></span>, msg)
+
+    <span class="pl-k">if</span> <span class="pl-smi">b</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> ioutil.<span class="pl-c1">ReadAll</span>(msg.<span class="pl-smi">Data</span>); err != <span class="pl-c1">nil</span> {
+        <span class="pl-k">return</span> err
+    } <span class="pl-k">else</span> {
+        log.<span class="pl-c1">Println</span>(<span class="pl-s"><span class="pl-pds">"</span>Data:<span class="pl-pds">"</span></span>, <span class="pl-c1">string</span>(b))
+    }
+    <span class="pl-k">return</span> <span class="pl-c1">nil</span>
+}
+
+<span class="pl-k">func</span> <span class="pl-en">(<span class="pl-v">u</span> *<span class="pl-v">User</span>) <span class="pl-en">Logout</span></span>() <span class="pl-v">error</span> {
+    <span class="pl-k">return</span> <span class="pl-c1">nil</span>
+}
+
+<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+    <span class="pl-smi">bkd</span> <span class="pl-k">:=</span> &amp;Backend{}
+
+    <span class="pl-smi">s</span> <span class="pl-k">:=</span> smtpserver.<span class="pl-c1">New</span>(bkd)
+
+    s.<span class="pl-smi">Addr</span> = <span class="pl-s"><span class="pl-pds">"</span>:1025<span class="pl-pds">"</span></span>
+    s.<span class="pl-smi">Domain</span> = <span class="pl-s"><span class="pl-pds">"</span>localhost<span class="pl-pds">"</span></span>
+    s.<span class="pl-smi">MaxIdleSeconds</span> = <span class="pl-c1">300</span>
+    s.<span class="pl-smi">MaxMessageBytes</span> = <span class="pl-c1">1024</span> * <span class="pl-c1">1024</span>
+    s.<span class="pl-smi">MaxRecipients</span> = <span class="pl-c1">50</span>
+    s.<span class="pl-smi">AllowInsecureAuth</span> = <span class="pl-c1">true</span>
+
+    log.<span class="pl-c1">Println</span>(<span class="pl-s"><span class="pl-pds">"</span>Starting server at<span class="pl-pds">"</span></span>, s.<span class="pl-smi">Addr</span>)
+    <span class="pl-k">if</span> <span class="pl-smi">err</span> <span class="pl-k">:=</span> s.<span class="pl-c1">ListenAndServe</span>(); err != <span class="pl-c1">nil</span> {
+        log.<span class="pl-c1">Fatal</span>(err)
+    }
+}</pre></div>
+
+<p>You can use the server manually with <code>telnet</code>:</p>
+
+<pre><code>$ telnet localhost 25
+EHLO localhost
+AUTH PLAIN
+AHVzZXJuYW1lAHBhc3N3b3Jk
+MAIL FROM:&lt;root@nsa.gov&gt;
+RCPT TO:&lt;root@gchq.gov.uk&gt;
+DATA
+Hey &lt;3
+.
+</code></pre>
+
+<h2>
+<a id="licence" class="anchor" href="#licence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licence</h2>
+
+<p>MIT</p>
+        </section>
+
+        <footer>
+          Go-smtp-server is maintained by <a href="https://github.com/nguoianphu">nguoianphu</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
