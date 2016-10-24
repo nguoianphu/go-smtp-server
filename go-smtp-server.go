@@ -3,6 +3,7 @@
 package main
 
 import (
+    "os"
     "errors"
     "io/ioutil"
     "log"
@@ -40,6 +41,8 @@ func main() {
     bkd := &Backend{}
 
     s := smtpserver.New(bkd)
+	
+	args := os.Args
 
     s.Addr = ":25"
     s.Domain = "localhost"
