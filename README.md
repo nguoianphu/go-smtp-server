@@ -1,7 +1,8 @@
 # go-smtp-server
 
 [![GoDoc](https://godoc.org/github.com/nguoianphu/go-smtp-server?status.svg)](https://godoc.org/github.com/nguoianphu/go-smtp-server)
-[![Build Status](https://travis-ci.org/nguoianphu/go-smtp-server.svg?branch=master)](https://travis-ci.org/nguoianphu/go-smtp-server)
+[![Linux and OS X Build Status](https://travis-ci.org/nguoianphu/go-smtp-server.svg?branch=master&label=Linux+and+OS+X+build "Linux and OS X Build Status")](https://travis-ci.org/nguoianphu/go-smtp-server)
+[![Windows Build Status](https://ci.appveyor.com/api/projects/status/ovn8ncrgcf9lpsan?svg=true&label=Windows+build "Windows Build Status")](https://ci.appveyor.com/project/nguoianphu/go-smtp-server)
 
 An ESMTP server library written in Go.
 

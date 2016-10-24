@@ -11,11 +11,11 @@ skip_tags: true
 environment:
   GOPATH: c:\gopath
   GOVERSION: 1.7.3
-  APM_TEST_PACKAGES: go-config
+  # APM_TEST_PACKAGES: go-config
 
   matrix:
-  - ATOM_CHANNEL: stable
-  - ATOM_CHANNEL: beta
+  # - ATOM_CHANNEL: stable
+  # - ATOM_CHANNEL: beta
 
 install:
   - set PATH=%GOPATH%\bin;c:\go\bin;%PATH%
@@ -27,9 +27,10 @@ install:
   - mkdir c:\gopath
   - go get -v github.com/nguoianphu/go-smtp-server/smtp
   - go test -v -race github.com/nguoianphu/go-smtp-server
+  - smtp
 
-build_script:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/atom/ci/943a16cd32926bdfcca703f16ec6a958a2db38a5/build-package.ps1'))
+# build_script:
+  # - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/atom/ci/943a16cd32926bdfcca703f16ec6a958a2db38a5/build-package.ps1'))
 
 test: off
 
