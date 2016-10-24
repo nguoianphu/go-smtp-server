@@ -28,6 +28,6 @@ before_install:
   
 script:
   - go get -v -race github.com/nguoianphu/go-smtp-server/smtp
-  - env GOOS=windows GOARCH=amd64 go get -v -race github.com/nguoianphu/go-smtp-server/smtp
+  - env GOOS=windows GOARCH=amd64 go get -v github.com/nguoianphu/go-smtp-server/smtp
   - ls -Rla $GOPATH/bin
   - go test -v -race github.com/nguoianphu/go-smtp-server
