@@ -13,7 +13,7 @@ environment:
   GOVERSION: 1.7.3
   # APM_TEST_PACKAGES: go-config
 
-  matrix:
+  # matrix:
   # - ATOM_CHANNEL: stable
   # - ATOM_CHANNEL: beta
 
